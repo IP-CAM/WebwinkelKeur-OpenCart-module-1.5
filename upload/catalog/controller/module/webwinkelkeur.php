@@ -11,20 +11,10 @@ class ControllerModuleWebwinkelkeur extends Controller {
         if(empty($settings['shop_id']))
             return;
 
-        if(!empty($settings['sidebar']) || !empty($settings['tooltip'])
-           || !empty($settings['javascript'])
-        ) {
+        if(!empty($settings['javascript'])) {
             $js_settings = array(
                 '_webwinkelkeur_id' => (int) $settings['shop_id'],
-                '_webwinkelkeur_sidebar' => !empty($settings['sidebar']),
-                '_webwinkelkeur_tooltip' => !empty($settings['tooltip']),
             );
-            if(!empty($settings['sidebar_position'])) {
-                $js_settings['_webwinkelkeur_sidebar_position'] = $settings['sidebar_position'];
-            }
-            if(!empty($settings['sidebar_top'])) {
-                $js_settings['_webwinkelkeur_sidebar_top'] = $settings['sidebar_top'];
-            }
             $this->data['settings'] = $js_settings;
         }
 

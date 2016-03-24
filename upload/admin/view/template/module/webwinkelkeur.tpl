@@ -58,37 +58,20 @@
             <td><input type="text" name="<?php printf($store['field_name'], 'api_key'); ?>" value="<?php echo $store['settings']['api_key']; ?>" /></td>
           </tr>
           <tr>
-            <td>Sidebar weergeven:</td>
+            <td>
+              JavaScript-integratie:<br />
+              <span class="help">Gebruik de JavaScript-integratie om de sidebar en de tooltip op je site te plaatsen. Alle instellingen voor de sidebar en de tooltip, vind je in het <a href="https://dashboard.webwinkelkeur.nl/integration" target="_blank">WebwinkelKeur Dashboard</a>.</span>
+            </td>
             <td>
               <label>
-                <input type="radio" name="<?php printf($store['field_name'], 'sidebar'); ?>" value="1" <?php if($store['settings']['sidebar']) echo "checked"; ?> />
+                <input type="radio" name="<?php printf($store['field_name'], 'javascript'); ?>" value="1" <?php if($store['settings']['javascript']) echo "checked"; ?> />
                 Ja
               </label>
               <label>
-                <input type="radio" name="<?php printf($store['field_name'], 'sidebar'); ?>" value="0" <?php if(!$store['settings']['sidebar']) echo "checked"; ?> />
+                <input type="radio" name="<?php printf($store['field_name'], 'javascript'); ?>" value="0" <?php if(!$store['settings']['javascript']) echo "checked"; ?> />
                 Nee
               </label>
             </td>
-          </tr>
-          <tr>
-            <td>Sidebar positie:</td>
-            <td>
-              <label>
-                <input type="radio" name="<?php printf($store['field_name'], 'sidebar_position'); ?>" value="left" <?php if($store['settings']['sidebar_position'] == 'left') echo "checked"; ?> />
-                Links
-              </label>
-              <label>
-                <input type="radio" name="<?php printf($store['field_name'], 'sidebar_position'); ?>" value="right" <?php if($store['settings']['sidebar_position'] == 'right') echo "checked"; ?> />
-                Rechts
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              Sidebar hoogte:<br/>
-              <span class="help">aantal pixels vanaf de bovenkant</span>
-            </td>
-            <td><input type="text" name="<?php printf($store['field_name'], 'sidebar_top'); ?>" size="2" value="<?php echo $store['settings']['sidebar_top']; ?>" /></td>
           </tr>
           <tr>
             <td>
@@ -130,32 +113,6 @@
               </label>
               <?php endforeach; ?>
               <div style="clear:both;"></div>
-            </td>
-          </tr>
-          <tr>
-            <td>Tooltip weergeven:</td>
-            <td>
-              <label>
-                <input type="radio" name="<?php printf($store['field_name'], 'tooltip'); ?>" value="1" <?php if($store['settings']['tooltip']) echo "checked"; ?> />
-                Ja
-              </label>
-              <label>
-                <input type="radio" name="<?php printf($store['field_name'], 'tooltip'); ?>" value="0" <?php if(!$store['settings']['tooltip']) echo "checked"; ?> />
-                Nee
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td>JavaScript-integratie:</td>
-            <td>
-              <label>
-                <input type="radio" name="<?php printf($store['field_name'], 'javascript'); ?>" value="1" <?php if($store['settings']['javascript']) echo "checked"; ?> />
-                Ja
-              </label>
-              <label>
-                <input type="radio" name="<?php printf($store['field_name'], 'javascript'); ?>" value="0" <?php if(!$store['settings']['javascript']) echo "checked"; ?> />
-                Nee
-              </label>
             </td>
           </tr>
           <tr>
