@@ -60,7 +60,7 @@
           <tr>
             <td>
               JavaScript-integratie:<br />
-              <span class="help">Gebruik de JavaScript-integratie om de sidebar en de tooltip op je site te plaatsen. Alle instellingen voor de sidebar en de tooltip, vind je in het <a href="https://dashboard.webwinkelkeur.nl/integration" target="_blank">WebwinkelKeur Dashboard</a>.</span>
+              <span class="help">Gebruik de JavaScript-integratie om de sidebar en de tooltip op uw site te plaatsen. Alle instellingen voor de sidebar en de tooltip, vindt u in het <a href="https://dashboard.webwinkelkeur.nl/integration" target="_blank">WebwinkelKeur Dashboard</a>.</span>
             </td>
             <td>
               <label>
