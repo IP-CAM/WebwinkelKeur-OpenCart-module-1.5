@@ -45,7 +45,7 @@ class ModelModuleWebwinkelkeur extends Model {
                 }
                 $url = 'https://dashboard.webwinkelkeur.nl/api/1.0/invitations.json?' . http_build_query($parameters);
                 $retriever = new Peschar_URLRetriever();
-                $response = $retriever->retrieve($url, http_build_query($post));
+                $response = $retriever->retrieve($url, $post);
                 if($this->isInviteSent($response)) {
                     $this->db->query("UPDATE `" . DB_PREFIX . "order` SET webwinkelkeur_invite_sent = 1 WHERE order_id = " . $order['order_id']);
                 } else {
