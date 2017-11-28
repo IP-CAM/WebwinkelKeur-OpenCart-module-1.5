@@ -75,8 +75,7 @@
           </tr>
           <tr>
             <td>
-              Uitnodiging versturen:<br />
-              <span class="help">alleen beschikbaar voor Plus-leden</span>
+              Uitnodiging versturen:
             </td>
             <td>
               <label>
