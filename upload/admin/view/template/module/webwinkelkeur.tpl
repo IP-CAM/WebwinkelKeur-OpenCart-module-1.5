@@ -90,6 +90,13 @@
                 <input type="radio" name="<?php printf($store['field_name'], 'invite'); ?>" value="0" <?php if(!$store['settings']['invite']) echo "checked"; ?> />
                 Nee, geen uitnodigingen versturen
               </label>
+              <br /><br />
+              <label>
+                <input type="checkbox" name="<?php printf($store['field_name'], 'limit_order_data'); ?>" <?php if($store['settings']['limit_order_data']) echo "checked"; ?> value="1" />
+                Do not send order information to WebwinkelKeur
+              </label>
+              <br />
+              <span class="help">Please note: not all WebwinkelKeur functionality will be available if you check this option!</span>
             </td>
           </tr>
           <tr>
