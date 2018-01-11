@@ -93,10 +93,13 @@
               <br /><br />
               <label>
                 <input type="checkbox" name="<?php printf($store['field_name'], 'limit_order_data'); ?>" <?php if($store['settings']['limit_order_data']) echo "checked"; ?> value="1" />
-                Do not send order information to WebwinkelKeur
+                Stuur geen uitgebreide informatie over bestellingen naar WebwinkelKeur
               </label>
               <br />
-              <span class="help">Please note: not all WebwinkelKeur functionality will be available if you check this option!</span>
+              <span class="help">
+                Standaard sturen we informatie over de klant en de bestelde producten mee bij het aanvragen van uitnodigingen, zodat we extra mogelijkheden kunnen bieden.<br />
+                Als u hier een vinkje zet, gebeurt dat niet, en is niet alle WebwinkelKeur-functionaliteit beschikbaar.
+              </span>
             </td>
           </tr>
           <tr>
