@@ -1,6 +1,7 @@
 <?php
 require_once DIR_SYSTEM . 'library/Peschar_Ping.php';
 class ControllerModuleWebwinkelkeur extends Controller {
+
     public function index() {
         $this->load->model('module/webwinkelkeur');
 
@@ -23,6 +24,8 @@ class ControllerModuleWebwinkelkeur extends Controller {
             if($html) $this->data['rich_snippet'] = $html;
         }
 
+        $this->data['run_cron'] = $this->model_module_webwinkelkeur->shouldRunCron();
+
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/webwinkelkeur.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/module/webwinkelkeur.tpl';
         } else {
@@ -37,6 +40,7 @@ class ControllerModuleWebwinkelkeur extends Controller {
 
         ignore_user_abort(true);
 
+        $this->model_module_webwinkelkeur->markCronRun();
         $this->model_module_webwinkelkeur->sendInvites();
     }
 

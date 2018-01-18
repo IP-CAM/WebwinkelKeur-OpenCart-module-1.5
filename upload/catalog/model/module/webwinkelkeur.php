@@ -208,4 +208,33 @@ class ModelModuleWebwinkelkeur extends Model {
 
         return $data;
     }
+
+    public function shouldRunCron() {
+        $settings = $this->getSettings();
+        return isset ($settings['last_cron_run']) && $settings['last_cron_run'] + 3600 < time();
+    }
+
+    public function markCronRun() {
+        $settings = $this->getSetting('webwinkelkeur');
+        if (empty($settings['multistore'])) {
+            $settings['last_cron_run'] = time();
+        } else {
+            $store_id = (int) $this->config->get('config_store_id');
+            $settings['store'][$store_id]['last_cron_run'] = time();
+        }
+        $this->editSetting('webwinkelkeur', $settings);
+    }
+
+    public function editSetting($group, $data, $store_id = 0) {
+        $this->db->query("DELETE FROM " . DB_PREFIX . "setting WHERE store_id = '" . (int)$store_id . "' AND `group` = '" . $this->db->escape($group) . "'");
+
+        foreach ($data as $key => $value) {
+            if (!is_array($value)) {
+                $this->db->query("INSERT INTO " . DB_PREFIX . "setting SET store_id = '" . (int)$store_id . "', `group` = '" . $this->db->escape($group) . "', `key` = '" . $this->db->escape($key) . "', `value` = '" . $this->db->escape($value) . "'");
+            } else {
+                 $this->db->query("INSERT INTO " . DB_PREFIX . "setting SET store_id = '" . (int)$store_id . "', `group` = '" . $this->db->escape($group) . "', `key` = '" . $this->db->escape($key) . "', `value` = '" . $this->db->escape(serialize($value)) . "', serialized = '1'");
+            }
+        }
+    }
+
 }

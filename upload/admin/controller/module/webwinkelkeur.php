@@ -155,6 +155,7 @@ class ControllerModuleWebwinkelkeur extends Controller {
             'javascript'       => true,
             'rich_snippet'     => false,
             'order_statuses'   => array(3, 5),
+            'last_cron_run'    => time()
         ), $data);
     }
 
@@ -171,6 +172,7 @@ class ControllerModuleWebwinkelkeur extends Controller {
             'javascript'       => !!$data['javascript'],
             'rich_snippet'     => !!$data['rich_snippet'],
             'order_statuses'   => empty($data['order_statuses']) ? array() : $this->cleanIntegerArray($data['order_statuses']),
+            'last_cron_run'    => (int) $data['last_cron_run']
         );
     }
 

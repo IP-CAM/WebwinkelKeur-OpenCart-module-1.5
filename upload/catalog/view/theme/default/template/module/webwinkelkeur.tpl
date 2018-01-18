@@ -1,3 +1,11 @@
+<?php if ($run_cron):?>
+<div style="
+    position: absolute;
+    top: -9999em;
+    left: -9999em;
+    background: url(/index.php?route=module/webwinkelkeur/cron);
+"></div>
+<?php endif;?>
 <?php if(isset($settings)): ?>
 <script type="text/javascript">
 (function() {
