@@ -210,31 +210,31 @@ class ModelModuleWebwinkelkeur extends Model {
     }
 
     public function shouldRunCron() {
-        $settings = $this->getSettings();
-        return isset ($settings['last_cron_run']) && $settings['last_cron_run'] + 3600 < time();
+        $settings = $this->getSetting('webwinkelkeur_cron', $this->config->get('config_store_id'));
+        if (!isset ($settings['last_cron_run'])) {
+            $this->markCronRun();
+            return false;
+        }
+        return $settings['last_cron_run'] + 3600 < time();
     }
 
     public function markCronRun() {
-        $settings = $this->getSetting('webwinkelkeur');
-        if (empty($settings['multistore'])) {
-            $settings['last_cron_run'] = time();
-        } else {
-            $store_id = (int) $this->config->get('config_store_id');
-            $settings['store'][$store_id]['last_cron_run'] = time();
-        }
-        $this->editSetting('webwinkelkeur', $settings);
-    }
-
-    public function editSetting($group, $data, $store_id = 0) {
-        $this->db->query("DELETE FROM " . DB_PREFIX . "setting WHERE store_id = '" . (int)$store_id . "' AND `group` = '" . $this->db->escape($group) . "'");
-
-        foreach ($data as $key => $value) {
-            if (!is_array($value)) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "setting SET store_id = '" . (int)$store_id . "', `group` = '" . $this->db->escape($group) . "', `key` = '" . $this->db->escape($key) . "', `value` = '" . $this->db->escape($value) . "'");
-            } else {
-                 $this->db->query("INSERT INTO " . DB_PREFIX . "setting SET store_id = '" . (int)$store_id . "', `group` = '" . $this->db->escape($group) . "', `key` = '" . $this->db->escape($key) . "', `value` = '" . $this->db->escape(serialize($value)) . "', serialized = '1'");
-            }
+        $now = time();
+        $store_id = (int)$this->config->get('config_store_id');
+        $this->db->query("
+            UPDATE `" . DB_PREFIX . "setting` 
+            SET `value` = $now 
+            WHERE `store_id` = $store_id 
+                AND `group` = 'webwinkelkeur_cron' 
+                AND `key` = 'last_cron_run'
+        ");
+        if ($this->db->countAffected() == 0) {
+            $this->db->query("
+                INSERT INTO `" . DB_PREFIX . "setting` 
+                (`store_id`, `group`, `key`, `value`, `serialized`)
+                VALUES
+                ($store_id, 'webwinkelkeur_cron', 'last_cron_run', $now, 0)
+            ");
         }
     }
-
 }
