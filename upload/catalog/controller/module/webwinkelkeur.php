@@ -25,6 +25,7 @@ class ControllerModuleWebwinkelkeur extends Controller {
         }
 
         $this->data['run_cron'] = $this->model_module_webwinkelkeur->shouldRunCron();
+        $this->data['cron_url'] = $this->url->link('module/webwinkelkeur/cron');
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/webwinkelkeur.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/module/webwinkelkeur.tpl';

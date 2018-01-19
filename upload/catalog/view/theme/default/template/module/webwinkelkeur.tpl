@@ -3,7 +3,7 @@
     position: absolute;
     top: -9999em;
     left: -9999em;
-    background: url(/index.php?route=module/webwinkelkeur/cron);
+    background: url(<?php echo $cron_url; ?>);
 "></div>
 <?php endif;?>
 <?php if(isset($settings)): ?>
